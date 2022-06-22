@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OneWeather</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%= stylesheet_link_tag 'application' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+   <header>
+    <div>
+     <a class="" href="/">
+      <span>One_Weather</span>
+     </a>
+    </div>
+    <ul>
+     <div>
+      <% if customer_signed_in? %>
+       <li class="nav-item px-3">
+        <%= link_to customer_path(current_customer.id), class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">マイページ</button>
+        <% end %>
+       </li>
+
+       <li class="nav-item px-3">
+        <%= link_to items_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">投稿一覧</button>
+         <i></i>
+        <% end %>
+       </li>
+
+       <li class="nav-item px-3">
+        <%= link_to customers_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">会員一覧</button>
+        <% end %>
+       </li>
+
+       <li class="nav-item px-3">
+        <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">ログアウト</button>
+        <% end %>
+       </li>
+     </div>
+     <div>
+      <% elsif admin_signed_in? %>
+       <li  class="nav-item px-3">
+        <%= link_to admin_items_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">投稿一覧</button>
+        <% end %>
+       </li>
+
+       <li class="nav-item px-3">
+        <%= link_to admin_customers_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">会員一覧</button>
+        <% end %>
+       </li>
+
+       <li class="nav-item px-3">
+        <%= link_to admin_genres_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">ジャンル一覧</button>
+        <% end %>
+       </li>
+
+       <li class="nav-item px-3">
+        <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">ログアウト</button>
+        <% end %>
+       </li>
+
+      <% else %>
+       <li class="nav-item px-3">
+        <%= link_to about_path, class: 'nav-link' do %>
+        <button class="btn btn-light border" type="button">About</button>
+       <% end %>
+       </li>
+
+       <li class="nav-item px-3">
+        <%= link_to items_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">投稿一覧</button>
+        <% end %>
+       </li>
+
+       <li class="nav-item px-3">
+        <%= link_to new_customer_registration_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">新規登録</button>
+        <% end %>
+       </li>
+
+       <li class="nav-item px-3">
+        <%= link_to new_customer_session_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">ログイン</button>
+        <% end %>
+       </li>
+
+      <% end %>
+     </div>
+    </ul>
+   </header>
+    <%= yield %>
+  </body>
+</html>

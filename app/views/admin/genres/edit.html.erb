@@ -1,0 +1,22 @@
+<p id="notice"></p>
+<% if @genre.errors.any? %>
+ <div id="error_explanation">
+  <ul style="color: red">
+   <h3 class="mt-5 ml-5"><%= @genre.errors.count %> error prphibited this obj from being saced:</h3>
+   <% @genre.errors.full_messages.each do |message| %>
+    <li class="mt-3 ml-5"><%= message %></li>
+   <% end %>
+  </ul>
+ </div>
+<% end %>
+<h3 class="genres-edit bg-light text-center">ジャンル編集</h3>
+
+<div>
+  <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>
+  <div class="">
+   <div class="">ジャンル名</div>
+   <div class=""><%= f.text_field :name %></div>
+   <div class=""><%= f.submit '変更を保存', class: '' %></div>
+  </div>
+  <% end %>
+ </div>
