@@ -1,7 +1,9 @@
 class Admin::GenresController < ApplicationController
+  before_action :authenticate_admin!
   def index
    @genre = Genre.new
    @genres = Genre.page(params[:page]).per(10)
+   @form = Genre.all
   end
 
   def edit
@@ -14,6 +16,7 @@ class Admin::GenresController < ApplicationController
     redirect_to admin_genres_path
    else
     @genres = Genre.page(params[:page]).per(10)
+    @form = Genre.all
     render 'admin/genres/index'
    end
   end

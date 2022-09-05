@@ -1,2 +1,27 @@
-<h1>Admin::Customers#index</h1>
-<p>Find me in app/views/admin/customers/index.html.erb</p>
+<div class="">
+ <h2 class="ml-5">会員一覧</h2>
+ <div>
+  <h5 class="ml-5">(全会員<%= @customers.count %>件)</h5>
+   <% @customers.each do |customer| %>
+    <div class="py-2">
+     <div class="px-5">
+      <div class="">会員ID：<%= customer.id %></div>
+     </div>
+     <div>
+      <div class="px-5">会員名：<%= link_to customer.name, admin_customer_path(customer.id)  %></div>
+     </div>
+     <div>
+      <div class="px-5">メールアドレス：<%= customer.email %></div>
+     </div>
+     <div>
+      <% if customer.is_deleted == true %>
+       <div class="px-5">会員ステータス：凍結</div>
+      <% else %>
+       <div class="px-5">会員ステータス：有効</div>
+      <% end %>
+     </div>
+    </div>
+   <% end %>
+  <div class="customer-pagi"><%= paginate @customer %></div>
+ </div>
+</div>

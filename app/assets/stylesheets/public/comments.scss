@@ -1,0 +1,15 @@
+// Place all the styles related to the public/comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.comment-pagi {
+ width: 1300px;
+}
+
+.comment-pagi > nav {
+ margin-top: 20px;
+ justify-content: center;
+}
+
+.comment-pagi > nav > span {
+ margin: 4px;
+}

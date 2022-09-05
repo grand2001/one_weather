@@ -1,2 +1,49 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<h2 class="ml-5"><%= @customer.name %>さんの会員詳細</h2>
+<div class="ml-5">
+ <div class="flex py-2">
+　<div class="">会員ID：</div>
+  <div class=""><%= @customer.id %></div>
+ </div>
+ <div class="flex py-2">
+　<div class="">氏名：</div>
+  <div class=""><%= @customer.name %></div>
+ </div>
+ <div class="flex py-2">
+　<div class="">メールアドレス：</div>
+  <div class=""><%= @customer.email %></div>
+ </div>
+ <div class="ml-3 py-2">
+  <% if @customer.is_deleted == true %>
+   <div class="">会員ステータス：凍結</div>
+  <% else %>
+   <div class="">会員ステータス：有効</div>
+  <% end %>
+  <div class="py-3">
+   <%= link_to "会員情報を編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-success' %>
+  </div>
+ </div>
+</div>
+
+<div class="m-5">
+ <h2><%= @customer.name %>の投稿一覧</h2>
+ <h5>(全投稿<%= @customer.items.count %>件)</h5>
+</div>
+
+ <div class="flex item-width">
+  <% @items.each do |item| %>
+  <div class="px-5 item">
+   <div class="">
+    <% if item.image.attached? %>
+     <%= image_tag item.image, size: "200x150" %>
+    <% else %>
+     <%= image_tag 'no_image', size: "200x150" %>
+    <% end %>
+   </div>
+
+   <div class="">投稿名：<%= link_to item.name, admin_item_path(item.id) %></div>
+   <div class="">ジャンル：<%= item.genre.name %></div>
+   <div class="">♥<%= item.favorites.count %> いいね</div>
+   <div><%= link_to "#{item.comments.count} コメント", admin_item_path(item.id) %></div>
+  </div>
+  <% end %>
+ </div>

@@ -1,9 +1,31 @@
 <div>
- <h2>
+ <h2 class="text-center pt-3">
   One_Weatherへようこそ！<br>
   このサイトは、天気の写真投稿のECサイトになります<br>
   会員でない方も投稿の閲覧はできますが、<br>
   投稿や他の投稿へのいいねなどには会員登録が必要となります。
  </h2>
 </div>
-<div><h2>新規投稿</h2></div>
+
+<div class="m-5">
+ <h5>(全投稿<%= @items.count %>件)</h5>
+ <div><h2>新規投稿</h2></div>
+  <div class="flex item-width">
+   <% @item.each do |item| %>
+   <div class="px-5 item">
+    <div class="">
+     <% if item.image.attached? %>
+      <%= image_tag item.image, size: "200x150" %>
+     <% else %>
+      <%= image_tag 'no_image', size: "200x150" %>
+     <% end %>
+    </div>
+    <div class="">投稿者：<%= link_to item.customer.name, customer_path(item.customer.id) %></div>
+    <div class="">投稿名：<%= link_to item.name, item_path(item.id) %></div>
+    <div class="">ジャンル：<%= item.genre.name %></div>
+    <div class="">♥<%= item.favorites.count %> いいね</div>
+    <div><%= link_to "#{item.comments.count} コメント", item_path(item.id) %></div>
+   </div>
+   <% end %>
+  </div>
+ </div>

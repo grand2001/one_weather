@@ -1,3 +1,16 @@
 // Place all the styles related to the public/customers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.customer-pagi {
+ width: 300px;
+}
+
+.customer-pagi > nav {
+ margin-top: 20px;
+ justify-content: center;
+}
+
+.customer-pagi > nav > span {
+ margin: 4px;
+}

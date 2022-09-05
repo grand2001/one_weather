@@ -1,24 +1,29 @@
-# README
+#サイトテーマ
+###天気や天候によって起きた写真を投稿するサイト
+##テーマを選んだ理由
+###気象情報はとても影響力があり需要が無くなることはなく、最近は天候についてSNS等で投稿したりすることも増えていると考えたため。
+###天気についての興味があり、気象現象から起こった風景のシェアを目的としたサイトを作成したいと思ったため。
+###気象情報はは様々年代の人が触れる情報であり影響力も大きいと思ったため。
+###気象系の画像限定のサイトであり、気象現象の名前がわかる場合にはジャンルに気象用語をつける
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##ターゲットユーザ
+###気象系に興味がある人
+###風景写真が好きな人
+###天気の写真をシェアしたい人
+###主な利用シーン
+###日常的な天気の写真をシェアしたい時
+###珍しい気象現象の写真をシェアしたい時
+###他の人が投稿した天気の写真を閲覧したい時
+##設計書
+https://docs.google.com/spreadsheets/d/1Am5y0BN9T7xqdKtb6qJReKtw1p1Kb_b70awsarGwOXw/edit?usp=sharing
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##開発環境
+###OS：Linux(CentOS)
+###言語：HTML,CSS,JavaScript,Ruby,SQL
+###フレームワーク：Ruby on Rails
+###JSライブラリ：jQuery
+###IDE：Cloud9
+###使用素材
+###使用検討中です。
+###サイト形式
+###コミュニティサイトです。

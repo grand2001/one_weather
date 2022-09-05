@@ -1,3 +1,32 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.flex {
+ display: flex;
+}
+
+.block {
+ display: block;
+}
+
+.inline {
+ display: inline;
+}
+
+.inline-block {
+ display: inline-block;
+}
+
+.item-pagi {
+ width: 1400px;
+}
+
+.item-pagi > nav {
+ margin-top: 20px;
+ justify-content: center;
+}
+
+.item-pagi > nav > span {
+ margin: 4px;
+}

@@ -1,0 +1,36 @@
+<div class="">
+ <h2 class="ml-5">検索結果</h2>
+  <% if @range == "Customer" %>
+    <div>
+      <h5 class="ml-5">(全会員<%= @customer.count %>件)</h5>
+      <% @customers.each do |customer| %>
+        <div class="px-5 py-2">
+          <h3><%= link_to customer.name, customer_path(customer.id) %></h3>
+        </div>
+      <% end %>
+      <div class="customer-pagi"><%= paginate @customers %></div>
+    </div>
+  <% else %>
+    <h5 class="ml-5">(全投稿<%= @item.count %>件)</h5>
+     <div class="flex item-width">
+      <% @items.each do |item| %>
+        <div class="px-5 item">
+          <div>
+           <% if item.image.attached? %>
+            <%= image_tag item.image, size: "200x150" %>
+           <% else %>
+            <%= image_tag 'no_image', size: "200x150" %>
+           <% end %>
+          </div>
+          <div>投稿者名：<%= link_to item.customer.name, customer_path(item.customer.id) %></div>
+          <div>投稿名：<%= link_to item.name, item_path(item.id) %></div>
+          <div>ジャンル：<%= item.genre.name %></div>
+          <div class="">♥<%= item.favorites.count %> いいね</div>
+          <div><%= link_to "#{item.comments.count} コメント", item_path(item.id) %></div>
+        </div>
+      <% end %>
+       <div class="item-pagi"><%= paginate @items %></div>
+    </div>
+  <% end %>
+
+</div>

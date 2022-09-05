@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag 'application' %>
@@ -15,93 +15,166 @@
 
   <body>
    <header>
-    <div>
-     <a class="" href="/">
-      <span>One_Weather</span>
-     </a>
+
+    <div class="navbar navbar-expand-lg">
+     <% if admin_signed_in? %>
+      <a class="navbar-brand px-5 text-dark" href="/admin">
+       <span>One_Weather</span>
+      </a>
+     <% else %>
+      <a class="navbar-brand px-5 text-dark" href="/">
+       <span>One_Weather</span>
+      </a>
+     <% end %>
     </div>
-    <ul>
-     <div>
-      <% if customer_signed_in? %>
+
+   <div class="flex pl-5">
+    <% if customer_signed_in? %>
+     <div class="">
+      <%= form_with url: searches_index_path, local: true, method: :get do |f| %>
+       <%= f.text_field :word %>
+       <%= f.select :range, options_for_select([['Customer'], ['Item']]) %>
+       <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+       <%= f.submit "検索", class: "btn btn-primary" %>
+      <% end %>
+     </div>
+    <% elsif admin_signed_in? %>
+     <div class="flex pl-5">
+      <%= form_with url: admin_searches_index_path, local: true, method: :get do |f| %>
+       <%= f.text_field :word %>
+       <%= f.select :range, options_for_select([['Customer'], ['Item']]) %>
+       <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+       <%= f.submit "検索", class: "btn btn-primary" %>
+      <% end %>
+     </div>
+    <% end %>
+
+
+
+    <ul class="navbar-nav ml-auto">
+    <% if customer_signed_in? %>
+     <div class="flex">
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to customer_path(current_customer.id), class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">マイページ</button>
         <% end %>
        </li>
+      </div>
 
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to items_path, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">投稿一覧</button>
          <i></i>
         <% end %>
        </li>
+      </div>
 
+      <div class="">
+       <li class="nav-item px-3">
+        <%= link_to new_item_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">投稿する</button>
+        <% end %>
+       </li>
+      </div>
+
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to customers_path, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">会員一覧</button>
         <% end %>
        </li>
+      </div>
 
+      <div class="">
+       <li class="nav-item px-3">
+        <%= link_to homes_mypage_path, class: 'nav-link' do %>
+         <button class="btn btn-light border" type="button">いいね一覧</button>
+        <% end %>
+       </li>
+      </div>
+
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">ログアウト</button>
         <% end %>
        </li>
+      </div>
      </div>
-     <div>
       <% elsif admin_signed_in? %>
+     <div class="flex">
+      <div class="">
        <li  class="nav-item px-3">
-        <%= link_to admin_items_path, class: 'nav-link' do %>
+        <%= link_to admin_root_path, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">投稿一覧</button>
         <% end %>
        </li>
+      </div>
 
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to admin_customers_path, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">会員一覧</button>
         <% end %>
        </li>
+      </div>
 
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to admin_genres_path, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">ジャンル一覧</button>
         <% end %>
        </li>
+      </div>
 
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">ログアウト</button>
         <% end %>
        </li>
+      </div>
+     </div>
 
-      <% else %>
+    <% else %>
+     <div class="flex">
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to about_path, class: 'nav-link' do %>
         <button class="btn btn-light border" type="button">About</button>
        <% end %>
        </li>
+      </div>
 
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to items_path, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">投稿一覧</button>
         <% end %>
        </li>
+      </div>
 
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to new_customer_registration_path, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">新規登録</button>
         <% end %>
        </li>
+      </div>
 
+      <div class="">
        <li class="nav-item px-3">
         <%= link_to new_customer_session_path, class: 'nav-link' do %>
          <button class="btn btn-light border" type="button">ログイン</button>
         <% end %>
        </li>
-
-      <% end %>
+      </div>
      </div>
+    <% end %>
     </ul>
+   </div>
    </header>
     <%= yield %>
   </body>
