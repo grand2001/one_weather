@@ -1,61 +1,61 @@
 <% if @item.customer.is_deleted == true %>
-<div class="m-5"><h3>凍結済みのアカウントの投稿です</h3></div>
-<% else %>
-<div class="m-5">
- <div class="flex">
-  <div class="">
-   <% if @item.image.attached? %>
-    <%= image_tag @item.image, size: "450x300" %>
-   <% else %>
-    <%= image_tag 'no_image', size: "450x300" %>
-   <% end %>
-  </div>
-  <div class="">
-   <h4 class="">投稿名：<strong><%= @item.name %></strong></h4>
-   <h5>投稿説明：<%= @item.introduction %></h5>
-   <h5>ジャンル名：<%= @item.genre.name %></h5>
-   <h5>日付：<%= @item.created_at.strftime('%Y/%m/%d') %></h5>
-   <h5>投稿者名：<%= link_to @item.customer.name, customer_path(@item.customer.id) %></h5>
-   <% if @item.customer == current_customer %>
-    <div class="mt-2"><%= link_to "投稿を編集する", edit_item_path(@item), class: 'btn btn-success' %></div>
-    <div class="mt-2"><%= link_to "投稿を削除する", item_path(@item), method: :delete, class: 'btn btn-danger' %></div>
-   <% end %>
-  </div>
- </div>
-
-<div class="flex align-items-center mb-3">
- ♥<%= @item.favorites.count %> いいね
- <% if @item.favorited_by?(current_customer) %>
-   <div class="ml-2"><%= link_to "いいねを外す", item_favorites_path(@item), method: :delete, class: 'btn btn-danger' %></div>
+ <div class="m-5"><h3>凍結済みのアカウントの投稿です</h3></div>
  <% else %>
-   <div class="ml-2"><%= link_to "いいね", item_favorites_path(@item), method: :post, class: 'btn btn-primary' %></div>
- <% end %>
-</div>
-
- <div>コメント件数：<%= @item.comments.count %></div>
- <div class="flex comment-width">
-  <% @comments.each do |comment| %>
-   <div class="p-2 comment">
-    <div>投稿者：<%= comment.customer.name %></div>
-    <div class="">コメント：<%= comment.comment %></div>
-    <div>
-     日付：<%= comment.created_at.strftime('%Y/%m/%d') %>
-     <% if comment.customer == current_customer or @item.customer == current_customer %>
-      <%= link_to "コメント削除", item_comment_path(comment.item,comment), method: :delete, class: "btn btn-danger" %>
-     <% end %>
-    </div>
+ <div class="m-5">
+  <div class="flex">
+   <div class="">
+    <% if @item.image.attached? %>
+     <%= image_tag @item.image, size: "450x300" %>
+    <% else %>
+     <%= image_tag 'no_image', size: "450x300" %>
+    <% end %>
    </div>
+   <div class="">
+    <h4 class="">投稿名：<strong><%= @item.name %></strong></h4>
+    <h5>投稿説明：<%= @item.introduction %></h5>
+    <h5>ジャンル名：<%= @item.genre.name %></h5>
+    <h5>日付：<%= @item.created_at.strftime('%Y/%m/%d') %></h5>
+    <h5>投稿者名：<%= link_to @item.customer.name, customer_path(@item.customer.id) %></h5>
+    <% if @item.customer == current_customer %>
+     <div class="mt-2"><%= link_to "投稿を編集する", edit_item_path(@item), class: 'btn btn-success' %></div>
+     <div class="mt-2"><%= link_to "投稿を削除する", item_path(@item), method: :delete, class: 'btn btn-danger' %></div>
+    <% end %>
+   </div>
+  </div>
+
+ <div class="flex align-items-center mb-3">
+  ♥<%= @item.favorites.count %> いいね
+  <% if @item.favorited_by?(current_customer) %>
+    <div class="ml-2"><%= link_to "いいねを外す", item_favorites_path(@item), method: :delete, class: 'btn btn-danger' %></div>
+  <% else %>
+    <div class="ml-2"><%= link_to "いいね", item_favorites_path(@item), method: :post, class: 'btn btn-primary' %></div>
   <% end %>
  </div>
- <div class="comment-pagi"><%= paginate @comments %></div>
 
- <% if customer_signed_in? %>
-  <%= form_with model: [@item, @comment] do |f| %>
-   <div class="flex">
-    <div><%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %></div>
-    <div class="comment-form ml-2"><%= f.submit "送信する", class: 'btn btn-primary' %></div>
-   </div>
+  <div>コメント件数：<%= @item.comments.count %></div>
+  <div class="flex comment-width">
+   <% @comments.each do |comment| %>
+    <div class="p-2 comment">
+     <div>投稿者：<%= comment.customer.name %></div>
+     <div class="">コメント：<%= comment.comment %></div>
+     <div>
+      日付：<%= comment.created_at.strftime('%Y/%m/%d') %>
+      <% if comment.customer == current_customer or @item.customer == current_customer %>
+       <%= link_to "コメント削除", item_comment_path(comment.item,comment), method: :delete, class: "btn btn-danger" %>
+      <% end %>
+     </div>
+    </div>
+   <% end %>
+  </div>
+  <div class="comment-pagi"><%= paginate @comments %></div>
+
+  <% if customer_signed_in? %>
+   <%= form_with model: [@item, @comment] do |f| %>
+    <div class="flex">
+     <div><%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %></div>
+     <div class="comment-form ml-2"><%= f.submit "送信する", class: 'btn btn-primary' %></div>
+    </div>
+   <% end %>
   <% end %>
- <% end %>
-</div>
+ </div>
 <% end %>

@@ -2,46 +2,46 @@
  <h2 class="mx-5"><%= @customer.name %>さんの会員詳細</h2>
  <div class="m-5"><h3>凍結済みのアカウントです</h3></div>
 <% else %>
-<h2 class="mx-5"><%= @customer.name %>さんの会員詳細</h2>
-<div class="px-5">
- <div class="flex">
-　<div class="">会員ID：<%= @customer.id %></div>
- </div>
- <div class="flex">
-　<div class="">氏名：<%= @customer.name %></div>
- </div>
- <div class="flex">
-　<div class="">メールアドレス：<%= @customer.email %></div>
- </div>
- <div class="pt-2">
-  <% if @customer == current_customer %>
-   <%= link_to "会員情報を編集する", edit_customer_path(@customer.id), class: 'btn btn-success' %>
-  <% end %>
- </div>
-</div>
-
-<div class="m-5">
- <h2><%= @customer.name %>さんの投稿一覧</h2>
- <h5>(全投稿<%= @customer.items.count %>件)</h5>
-</div>
-
- <div class="flex item-width">
-  <% @items.each do |item| %>
-  <div class="px-5 item">
-   <div class="">
-    <% if item.image.attached? %>
-     <%= image_tag item.image, size: "200x150" %>
-    <% else %>
-     <%= image_tag 'no_image', size: "200x150" %>
-    <% end %>
-   </div>
-
-   <div class="">投稿名：<%= link_to item.name, item_path(item.id) %></div>
-   <div class="">ジャンル：<%= item.genre.name %></div>
-   <div class="">♥<%= item.favorites.count %> いいね</div>
-   <div><%= link_to "#{item.comments.count} コメント", item_path(item.id) %></div>
+ <h2 class="mx-5"><%= @customer.name %>さんの会員詳細</h2>
+ <div class="px-5">
+  <div class="flex">
+ 　<div class="">会員ID：<%= @customer.id %></div>
   </div>
-  <% end %>
+  <div class="flex">
+ 　<div class="">氏名：<%= @customer.name %></div>
+  </div>
+  <div class="flex">
+ 　<div class="">メールアドレス：<%= @customer.email %></div>
+  </div>
+  <div class="pt-2">
+   <% if @customer == current_customer %>
+    <%= link_to "会員情報を編集する", edit_customer_path(@customer.id), class: 'btn btn-success' %>
+   <% end %>
+  </div>
  </div>
- <div class="item-pagi"><%= paginate @items %></div>
+ 
+ <div class="m-5">
+  <h2><%= @customer.name %>さんの投稿一覧</h2>
+  <h5>(全投稿<%= @customer.items.count %>件)</h5>
+ </div>
+ 
+  <div class="flex item-width">
+   <% @items.each do |item| %>
+   <div class="px-5 item">
+    <div class="">
+     <% if item.image.attached? %>
+      <%= image_tag item.image, size: "200x150" %>
+     <% else %>
+      <%= image_tag 'no_image', size: "200x150" %>
+     <% end %>
+    </div>
+ 
+    <div class="">投稿名：<%= link_to item.name, item_path(item.id) %></div>
+    <div class="">ジャンル：<%= item.genre.name %></div>
+    <div class="">♥<%= item.favorites.count %> いいね</div>
+    <div><%= link_to "#{item.comments.count} コメント", item_path(item.id) %></div>
+   </div>
+   <% end %>
+  </div>
+  <div class="item-pagi"><%= paginate @items %></div>
  <% end %>
