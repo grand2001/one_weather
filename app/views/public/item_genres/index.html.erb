@@ -17,7 +17,7 @@
     <% if item.image.attached? %>
      <%= image_tag item.image, size: "200x150" %>
     <% else %>
-     <%= image_tag 'no_image', size: "200x150" %>
+     <%= image_tag asset_path('no_image.jpg'), size: "200x150" %>
     <% end %>
    </div>
    <div class="">投稿者：<%= link_to item.customer.name, customer_path(item.customer.id) %></div>

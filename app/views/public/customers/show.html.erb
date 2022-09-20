@@ -19,12 +19,12 @@
    <% end %>
   </div>
  </div>
- 
+
  <div class="m-5">
   <h2><%= @customer.name %>さんの投稿一覧</h2>
   <h5>(全投稿<%= @customer.items.count %>件)</h5>
  </div>
- 
+
   <div class="flex item-width">
    <% @items.each do |item| %>
    <div class="px-5 item">
@@ -32,10 +32,10 @@
      <% if item.image.attached? %>
       <%= image_tag item.image, size: "200x150" %>
      <% else %>
-      <%= image_tag 'no_image', size: "200x150" %>
+      <%= image_tag asset_path('no_image.jpg'), size: "200x150" %>
      <% end %>
     </div>
- 
+
     <div class="">投稿名：<%= link_to item.name, item_path(item.id) %></div>
     <div class="">ジャンル：<%= item.genre.name %></div>
     <div class="">♥<%= item.favorites.count %> いいね</div>

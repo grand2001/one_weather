@@ -7,10 +7,10 @@
     <% if @item.image.attached? %>
      <%= image_tag @item.image, size: "450x300" %>
     <% else %>
-     <%= image_tag 'no_image', size: "450x300" %>
+     <%= image_tag asset_path('no_image.jpg'), size: "450x300" %>
     <% end %>
    </div>
-   <div class="">
+   <div class="px-3">
     <h4 class="">投稿名：<strong><%= @item.name %></strong></h4>
     <h5>投稿説明：<%= @item.introduction %></h5>
     <h5>ジャンル名：<%= @item.genre.name %></h5>
