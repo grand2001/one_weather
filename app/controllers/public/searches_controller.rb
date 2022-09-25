@@ -5,8 +5,8 @@ class Public::SearchesController < ApplicationController
     @range = params[:range]
 
     if @range == "Customer"
-      @customers = Customer.looks(params[:search], params[:word]).where(is_deleted: false).page(params[:page]).per(10)
-      @customer = Customer.looks(params[:search], params[:word]).where(is_deleted: false)
+      @customers = Customer.looks(params[:search], params[:word]).ture_customer.page(params[:page]).per(10)
+      @customer = Customer.looks(params[:search], params[:word]).ture_customer
     else
       @items = Item.looks(params[:search], params[:word]).page(params[:page]).per(8)
       @item = Item.looks(params[:search], params[:word])

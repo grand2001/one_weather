@@ -1,10 +1,10 @@
 class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
-   @genre = Genre.new
+   @genre_new = Genre.new
    @genres = Genre.page(params[:page]).per(10)
-   @form = Genre.all
+   @genre = Genre.all
   end
 
   def edit

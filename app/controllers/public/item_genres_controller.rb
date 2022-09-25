@@ -1,9 +1,11 @@
 class Public::ItemGenresController < ApplicationController
  before_action :authenticate_customer!
+
   def index
    @genre = Genre.find(params[:genre])
    @genres = Genre.all
-   @items = Item.where(genre_id: params[:genre]).joins(:customer).merge(Customer.where(is_deleted: false)).page(params[:page]).per(8)
+   @item = Item.where(genre_id: params[:genre]).ture_item
+   @items = Item.where(genre_id: params[:genre]).ture_item.page(params[:page]).per(8)
   end
 
   private

@@ -1,8 +1,8 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
   def index
-   @customer = Customer.where(is_deleted: false).page(params[:page]).page(params[:page]).per(10)
-   @customers = Customer.where(is_deleted: false)
+   @customer = Customer.ture_customer.page(params[:page]).per(10)
+   @customers = Customer.ture_customer
   end
 
   def show

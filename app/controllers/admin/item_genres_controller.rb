@@ -1,10 +1,11 @@
 class Admin::ItemGenresController < ApplicationController
  before_action :authenticate_admin!
- 
+
   def index
    @genre = Genre.find(params[:genre])
    @genres = Genre.all
-   @items = Item.where(genre_id: params[:genre]).page(params[:page])
+   @item = Item.where(genre_id: params[:genre])
+   @items = Item.where(genre_id: params[:genre]).page(params[:page]).per(8)
   end
 
   private

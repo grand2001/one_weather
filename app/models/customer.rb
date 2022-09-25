@@ -21,4 +21,7 @@ class Customer < ApplicationRecord
     end
   end
 
+  scope :ture_customer, -> { where(is_deleted: false) }
+  
+
 end

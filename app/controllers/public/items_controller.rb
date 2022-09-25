@@ -1,9 +1,9 @@
 class Public::ItemsController < ApplicationController
  before_action :authenticate_customer!, only: [:new, :edit]
- 
+
   def index
-   @item = Item.joins(:customer).merge(Customer.where(is_deleted: false)).page(params[:page]).per(8)
-   @items = Item.joins(:customer).merge(Customer.where(is_deleted: false))
+   @item = Item.ture_item
+   @items = Item.ture_item.page(params[:page]).per(8)
    @genre = Genre.all
   end
 
