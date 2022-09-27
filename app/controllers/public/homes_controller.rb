@@ -11,6 +11,7 @@ class Public::HomesController < ApplicationController
   def mypage
    @genres = Genre.all
    @items = Item.ture_item
+   @favorite = Favorite.where(customer_id: current_customer.id)
    @favorites = Favorite.where(customer_id: current_customer.id).page(params[:page]).per(8)
   end
 end
