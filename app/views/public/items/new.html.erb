@@ -2,7 +2,7 @@
 <% if @item.errors.any? %>
  <div id="error_explanation">
   <ul style="color: red">
-   <h3 class="mt-5 ml-5"><%= @item.errors.count %> error prphibited this obj from being saced:</h3>
+   <h3 class="mt-5 ml-5"><%= @item.errors.count %>つのエラーがあります</h3>
    <% @item.errors.full_messages.each do |message| %>
     <li class="mt-3 ml-5"><%= message %></li>
    <% end %>
@@ -20,18 +20,18 @@
    </div>
 
    <div class="my-4">
-    <div><%= f.label :name , "投稿見出し", class: "" %></div>
+    <div><%= f.label :name , "投稿名(1字以上,10字以下)", class: "" %></div>
     <div><%= f.text_field :name, class: "" %></div>
    </div>
 
    <div class="my-4">
-    <div><%= f.label :introduction , "投稿説明", class: "" %></div>
+    <div><%= f.label :introduction , "投稿説明(5字以上,30字以下)", class: "" %></div>
     <div><%= f.text_area :introduction, class: "" %></div>
    </div>
 
    <div class="my-4">
     <div><%= f.label :genre_id , "ジャンル", class: "" %></div>
-    <div><%= f.collection_select :genre_id, @genre, :id, :name, options = { include_blank:'--選択してください--', required: true}, class: "" %></div>
+    <div><%= f.collection_select :genre_id, @genre, :id, :name, options = { selected: 1, required: true}, class: "" %></div>
    </div>
 
    <div class="my-4">

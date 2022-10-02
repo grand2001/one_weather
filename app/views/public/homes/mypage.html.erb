@@ -17,11 +17,11 @@
        <div>この投稿のアカウントは<br>凍結されています</div>
        <div class="ml-2"><%= link_to "いいねを外す", item_favorites_path(favorite.item), method: :delete, class: 'btn btn-danger' %></div>
       <% else %>
-       <div class="">
+       <div class="item-index-img">
         <% if favorite.item.image.attached? %>
-         <%= image_tag favorite.item.image, size: "200x150" %>
+         <%= image_tag favorite.item.image %>
         <% else %>
-         <%= image_tag asset_path('no_image.jpg'), size: "200x150" %>
+         <%= image_tag asset_path('no_image.jpg') %>
         <% end %>
        </div>
        <div class="">投稿者：<%= link_to favorite.item.customer.name, customer_path(favorite.item.customer.id) %></div>

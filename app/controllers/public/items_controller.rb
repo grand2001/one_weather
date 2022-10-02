@@ -3,7 +3,7 @@ class Public::ItemsController < ApplicationController
 
   def index
    @item = Item.ture_item
-   @items = Item.ture_item.page(params[:page]).per(8)
+   @items = Item.ture_item.order(created_at: :desc).page(params[:page]).per(8)
    @genre = Genre.all
   end
 
@@ -19,9 +19,11 @@ class Public::ItemsController < ApplicationController
   end
 
   def edit
-   @genre = Genre.find(params[:id])
    @genres = Genre.all
    @item = Item.find(params[:id])
+   if @item.customer != current_customer
+    redirect_to item_path(@item.id)
+   end
   end
 
   def create
@@ -45,7 +47,10 @@ class Public::ItemsController < ApplicationController
    if @item.update(item_params)
     redirect_to item_path(@item.id)
    else
-    render 'public/item/edit'
+    @item = Item.find(params[:id])
+    @comments = Comment.where(item_id: @item.id).page(params[:page]).per(10)
+    @comment = Comment.new
+    render 'public/items/show'
    end
   end
 

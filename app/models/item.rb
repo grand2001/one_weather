@@ -7,8 +7,9 @@ class Item < ApplicationRecord
  belongs_to :genre
 
  validates :genre_id, presence: true
- validates :introduction, presence: true, length: { minimum: 5, maximum: 30 }
- validates :name, presence: true, length: { minimum: 1, maximum: 10 }
+ validates :introduction, presence: true, length: { minimum: 5, maximum: 30 , message: 'は5字以上30字以下で入力してください' }
+ validates :name, presence: true, length: { minimum: 1, maximum: 10 , message: 'は1字以上10字以下で入力してください'}
+ validates :image, presence: true
 
  def self.looks(search, word)
    customer_ids = Customer.where(is_deleted: true)

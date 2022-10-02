@@ -16,8 +16,9 @@ class Admin::GenresController < ApplicationController
    if @genre.save
     redirect_to admin_genres_path
    else
+    @genre_new = Genre.new
     @genres = Genre.page(params[:page]).per(10)
-    @form = Genre.all
+    @genre = Genre.all
     render 'admin/genres/index'
    end
   end

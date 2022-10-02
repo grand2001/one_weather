@@ -8,7 +8,7 @@ class Customer < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validates :name, presence: true, length: { minimum: 1, maximum: 10 }
+  validates :name, presence: true, length: { minimum: 1, maximum: 10 , message: 'は1字以上10字以下で入力してください'}
   validates :email, presence: true
 
   def self.looks(search, word)
@@ -22,6 +22,6 @@ class Customer < ApplicationRecord
   end
 
   scope :ture_customer, -> { where(is_deleted: false) }
-  
+
 
 end

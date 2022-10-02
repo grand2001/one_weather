@@ -33,6 +33,7 @@
  </div>
 
   <div>コメント件数：<%= @item.comments.count %></div>
+
   <div class="flex comment-width">
    <% @comments.each do |comment| %>
     <div class="p-2 comment">
@@ -52,7 +53,7 @@
   <% if customer_signed_in? %>
    <%= form_with model: [@item, @comment] do |f| %>
     <div class="flex">
-     <div><%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %></div>
+     <div><%= f.text_area :comment, rows: '5', placeholder: "コメントをここに　　　(1字以上40字以下で入力)" %></div>
      <div class="comment-form ml-2"><%= f.submit "送信する", class: 'btn btn-primary' %></div>
     </div>
    <% end %>

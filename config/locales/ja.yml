@@ -1,0 +1,14 @@
+ja:
+ activerecord:
+   attributes:
+     customer:
+       name: 名前
+       email: Eメール
+       password: パスワード
+     item:
+       genre: ジャンル
+       introduction: 投稿説明
+       name: 投稿名
+       image: 投稿画像
+     genre:
+       name: ジャンル

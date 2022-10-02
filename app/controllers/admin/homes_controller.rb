@@ -3,7 +3,7 @@ class Admin::HomesController < ApplicationController
 
   def top
    @item = Item.all
-   @items = Item.all.page(params[:page]).per(8)
+   @items = Item.all.order(created_at: :desc).page(params[:page]).per(8)
    @genres = Genre.all
   end
 
