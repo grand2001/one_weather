@@ -2,9 +2,9 @@
  <div class="px-5 item">
   <div class="">
    <% if item.image.attached? %>
-    <%= image_tag item.image, class: "item-index-img" %>
+    <%= image_tag item.image, size: "200x150", class: "item-index-img" %>
    <% else %>
-    <%= image_tag asset_path('no_image.jpg'), class: "item-index-img" %>
+    <%= image_tag asset_path('no_image.jpg'), size: "200x150", class: "item-index-img" %>
    <% end %>
   </div>
   <div class="">投稿者：<%= link_to item.customer.name, admin_customer_path(item.customer.id) %></div>

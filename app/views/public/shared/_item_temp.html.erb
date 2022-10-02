@@ -1,10 +1,10 @@
 <% item.each do |item| %>
  <div class="px-5 item">
-  <div class="">
+  <div class="item-img">
    <% if item.image.attached? %>
-    <%= image_tag item.image, class: "item-index-img" %>
+    <%= image_tag item.image, class: "item-img-cover" %>
    <% else %>
-    <%= image_tag asset_path('no_image.jpg'), class: "item-index-img" %>
+    <%= image_tag asset_path('no_image.jpg'), class: "item-img-cover" %>
    <% end %>
   </div>
   <div class="">投稿者：<%= link_to item.customer.name, customer_path(item.customer.id) %></div>
